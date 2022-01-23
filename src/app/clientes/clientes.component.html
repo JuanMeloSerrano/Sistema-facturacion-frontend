@@ -13,10 +13,12 @@
     <thead>
       <tr>
         <th>id</th>
+        <th>t. ident</th>
         <th>nombre</th>
         <th>apellido</th>
         <th>email</th>
         <th>fecha</th>
+        <th>estado</th>
         <th>
           Editar
         </th>
@@ -29,10 +31,12 @@
     <tbody>
       <tr *ngFor="let cliente of clientes">
         <td>{{cliente.id}}</td>
+        <td>{{cliente.tipoid | uppercase}}</td>
         <td>{{cliente.nombre | uppercase}}</td>
         <td>{{cliente.apellido | uppercase}}</td>
         <td>{{cliente.email}}</td>
         <td>{{cliente.createAt | date:"dd/MM/yyyy"}}</td>
+        <td>{{cliente.estado | uppercase}}</td>
         <td>
           <button type="button" name="editar" [routerLink]="['/clientes/form', cliente.id]" class="btn btn-primary">Editar</button>
         </td>

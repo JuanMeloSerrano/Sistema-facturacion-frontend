@@ -6,6 +6,21 @@
     <form #clienteForm="ngForm">
 
       <div class="form-group row">
+        <label for="tipoid" class="col-form-label col-sm-2">Tipo Identificación</label>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" [(ngModel)]="cliente.tipoid" name="tipoid" required minlength="2" #tipoid="ngModel">
+            <div class="alert alert-danger" *ngIf="tipoid.invalid && (tipoid.dirty || tipoid.touched)">
+              <div *ngIf="tipoid.errors?.['required']">
+                El tipo de identificación es requerido
+              </div>
+              <div *ngIf="tipoid.errors?.['minlength']">
+                El tipo de identificación debe tener al menos 2 caracteres
+              </div>
+            </div>
+        </div>
+      </div>
+<br>
+      <div class="form-group row">
         <label for="nombre" class="col-form-label col-sm-2">Nombre</label>
         <div class="col-sm-6">
             <input type="text" class="form-control" [(ngModel)]="cliente.nombre" name="nombre" required minlength="4" #nombre="ngModel">
@@ -19,7 +34,7 @@
             </div>
         </div>
       </div>
-
+<br>
       <div class="form-group row">
         <label for="apellido" class="col-form-label col-sm-2">Apellido</label>
         <div class="col-sm-6">
@@ -31,7 +46,7 @@
           </div>
         </div>
       </div>
-
+<br>
       <div class="form-group row">
         <label for="email" class="col-form-label col-sm-2">Email</label>
         <div class="col-sm-6">
@@ -46,16 +61,28 @@
           </div>
         </div>
       </div>
-
+<br>
+      <div class="form-group row">
+        <label for="estado" class="col-form-label col-sm-2">Estado</label>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" [(ngModel)]="cliente.estado" name="estado" required #estado="ngModel">
+            <div class="alert alert-danger" *ngIf="estado.invalid && (estado.dirty || estado.touched)">
+              <div *ngIf="estado.errors?.['required']">
+                El estado es requerido
+              </div>
+            </div>
+        </div>
+      </div>
+<br>
       <div class="form-group row">
        <label for="createAt" class="col-form-label col-sm-2">Fecha</label>
        <div class="col-sm-6">
          <input [matDatepicker]="miDatepicker" class="form-control" [(ngModel)]="cliente.createAt" name="createAt" style="display:inline; width:300px;">
-         <mat-datepicker-toggle [for]="miDatepicker"></mat-datepicker-toggle>
+         <mat-datepicker-toggle [for]="miDatepicker" style="color:rgb(208, 211, 212)"></mat-datepicker-toggle>
          <mat-datepicker #miDatepicker></mat-datepicker>
        </div>
      </div>
-
+<br>
   <div class="form-group row">
     <div class="col-sm-6">
       <button class="btn btn-primary" role="button" (click)='create()' *ngIf="!cliente.id else elseBlock" [disabled]="!clienteForm.form.valid">Crear</button>
